@@ -93,8 +93,8 @@ $(function() {
          });
          it('work complete', function() {
            const feed = document.querySelector('.feed');
-           let entry = feed.querySelector('.entry')
-           expect(entry.children.length > 0).toBe(true);
+           let entryEls = feed.querySelectorAll('.entry');
+           expect(entryEls.length > 0).toBe(true);
          });
 
     });
@@ -106,18 +106,17 @@ $(function() {
         /* test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          */
-         beforeEach(function() {
-           loadFeed(0, function () {
-             Array.from(feed.children).forEach(function(entry) {
-               firstFeed.push(entry.innerText);
+         beforeEach(function(done){
+              loadFeed(0, function(){
+                  Array.from(feed.children).forEach(function(entry){
+                    firstFeed.push(entry.innerText);
+                  });
+                  loadFeed(1, function(){
+                     // all variables initialised, can begin tests
+                    done();
+                 });
              });
-             callback();
-           });
-
-           loadFeed(1, function (done){
-
-           });
-         });
+          });
          it('content changes', function(){
            Array.from(feed.children).forEach(function(entry,index) {
              console.log(entry.innerText, firstFeed[index], entry.innerText === firstFeed[index]);
