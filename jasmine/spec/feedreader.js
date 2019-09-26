@@ -74,7 +74,7 @@ $(function() {
 
             let $body = $(document.body);
             $(".menu-icon-link").click(); //click menu icon once
-            expect($body.hasClass('')).toBe(true); //Check if menu-hidden is not there => menu open
+            expect($body.hasClass('')).toBe(false); //Check if menu-hidden is not there => menu open
             $(".menu-icon-link").click(); //click menu icon once, again
             expect($body.hasClass('menu-hidden')).toBe(true); //Check if menu-hidden is there => menu closed
 
