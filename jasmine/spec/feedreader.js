@@ -79,6 +79,15 @@ $(function() {
             expect($body.hasClass('menu-hidden')).toBe(true); //Check if menu-hidden is there => menu closed
 
           });
+          it('new class', function() {
+            let $body = $(document.body);
+            $(".newClass").click(); //click menu icon once
+            expect($body.hasClass('')).toBe(false); //Check if menu-hidden is not there => menu open
+            $(".newClass").click(); //click menu icon once, again
+            expect($body.hasClass('newClass')).toBe(true); //Check if menu-hidden is there => menu closed
+
+          });
+
     });
 
     /* Test suite named "Initial Entries" */
